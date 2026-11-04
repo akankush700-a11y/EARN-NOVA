@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080711">
+<title>EARN NOVA — Rewards Experience</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#030303;--panel:#111;--muted:#b8b8b8;--lime:#f4f4f4;--purple:#c8c8c8;--white:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 15% 10%,#32205a66,transparent 38%),radial-gradient(ellipse at 90% 55%,#263b2260,transparent 35%),linear-gradient(135deg,#080711,#0c0a17 60%,#090d0c)}
+a{color:inherit;text-decoration:none}
+nav{height:78px;display:flex;align-items:center;justify-content:space-between;padding:0 7vw;position:fixed;top:0;width:100%;z-index:20;background:#090812a8;backdrop-filter:blur(18px);border-bottom:1px solid #ffffff12}
+.brand{font:700 22px 'Space Grotesk';letter-spacing:-1px}.brand b{color:var(--lime)}
+.navlinks{display:flex;gap:30px;color:#c7c3d3;font-size:13px}.navlinks a:hover{color:var(--lime)}
+.navbtn,.btn{border:0;border-radius:999px;padding:13px 21px;background:var(--lime);color:#11130a;font-weight:700;cursor:pointer;transition:.25s;box-shadow:0 0 24px #c8ff4d28}
+.navbtn:hover,.btn:hover{transform:translateY(-3px);box-shadow:0 10px 35px #c8ff4d40}
+section{padding:110px 7vw;position:relative}
+.hero{min-height:100vh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;padding-top:135px;overflow:hidden}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--lime);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:23px}
+.dot{width:7px;height:7px;background:var(--lime);border-radius:50%;box-shadow:0 0 14px var(--lime)}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif}
+h1{font-size:clamp(48px,7vw,92px);line-height:.98;letter-spacing:-5px;max-width:700px}
+h1 span{color:var(--lime)}
+.lead{color:var(--muted);font-size:16px;line-height:1.8;max-width:480px;margin:26px 0 32px}
+.actions{display:flex;gap:13px;align-items:center;flex-wrap:wrap}
+.btn.secondary{background:#ffffff0c;color:white;border:1px solid #ffffff25;box-shadow:none}
+.note{font-size:11px;color:#8f8b9e;margin-top:20px}
+.visual{height:570px;position:relative;perspective:1000px;display:grid;place-items:center}
+.orb{position:absolute;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#d9ff8c,#7cba35 24%,#314b22 54%,#14151a 72%);filter:drop-shadow(0 35px 60px #9fff3b26);animation:float 6s ease-in-out infinite;transform-style:preserve-3d}
+.orb:after{content:"";position:absolute;inset:14px;border-radius:50%;border:1px solid #ffffff55;box-shadow:inset 0 0 45px #faffc544}
+.coin{position:absolute;width:112px;height:112px;border-radius:50%;display:grid;place-items:center;font-size:40px;color:#553c0c;background:radial-gradient(circle at 32% 25%,#fff2a7,#e6a92c 45%,#8e5a10 80%);border:7px double #ffdc75;box-shadow:0 20px 40px #0008,inset 0 0 15px #fff9;animation:coinfloat 5s ease-in-out infinite;transform-style:preserve-3d}
+.coin.one{top:70px;right:10%;width:90px;height:90px;animation-delay:-1s}.coin.two{bottom:80px;left:4%;width:75px;height:75px;animation-delay:-3s}
+.coin.three{top:42%;right:0;width:58px;height:58px;font-size:23px;animation-delay:-2s}
+.reward-card{position:absolute;bottom:78px;right:8%;width:220px;padding:20px;border:1px solid #ffffff30;border-radius:20px;background:#ffffff13;backdrop-filter:blur(18px);transform:rotate(-7deg);box-shadow:0 25px 65px #0008;animation:cardfloat 7s ease-in-out infinite}
+.reward-card small{color:#c4c0d0}.reward-card strong{display:block;font:700 29px 'Space Grotesk';margin:8px 0;color:var(--lime)}
+.scrollhint{position:absolute;bottom:28px;left:7vw;color:#898598;font-size:10px;letter-spacing:2px;text-transform:uppercase}
+@keyframes float{0%,100%{transform:translateY(0) rotateY(-15deg) rotateX(8deg)}50%{transform:translateY(-22px) rotateY(15deg) rotateX(-6deg)}}
+@keyframes coinfloat{0%,100%{transform:translateY(0) rotateY(0) rotateZ(-8deg)}50%{transform:translateY(-25px) rotateY(180deg) rotateZ(8deg)}}
+@keyframes cardfloat{0%,100%{transform:translateY(0) rotate(-7deg)}50%{transform:translateY(-16px) rotate(-3deg)}}
+.section-head{text-align:center;max-width:650px;margin:0 auto 55px}.section-head h2{font-size:clamp(34px,5vw,56px);letter-spacing:-2px}.section-head p{color:var(--muted);line-height:1.7;margin-top:15px}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature,.task,.walletbox{background:linear-gradient(145deg,#1b192b,#100f1b);border:1px solid #ffffff13;border-radius:24px;padding:28px;position:relative;overflow:hidden;transition:transform .35s,border-color .35s}
+.feature:hover,.task:hover{transform:translateY(-9px) rotateX(2deg);border-color:#c8ff4d70}
+.icon{width:52px;height:52px;border-radius:16px;background:#c8ff4d18;display:grid;place-items:center;font-size:24px;margin-bottom:24px}
+.feature h3,.task h3{font-size:19px;margin-bottom:10px}.feature p,.task p{color:var(--muted);font-size:13px;line-height:1.7}
+.tasks{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.task{min-height:230px}.task .points{color:var(--lime);font:700 25px 'Space Grotesk';margin:20px 0}
+.task button{width:100%;border:1px solid #ffffff22;background:#ffffff0b;color:white;padding:12px;border-radius:12px;cursor:pointer;font-weight:700}
+.task button:hover{background:var(--lime);color:#111}
+.wallet{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}
+.walletbox{padding:38px;background:linear-gradient(135deg,#272044,#141b22);min-height:270px}
+.walletbox .label{color:#c2bed0;font-size:13px}.walletbox .amount{font:700 clamp(38px,5vw,62px) 'Space Grotesk';margin:18px 0;color:var(--lime)}
+.walletbox .tiny{color:#aaa7bb;font-size:12px}
+.walletcopy h2{font-size:clamp(34px,4vw,54px);letter-spacing:-2px}.walletcopy p{color:var(--muted);line-height:1.8;margin:18px 0}
+.history{margin-top:20px;padding:20px;border-radius:16px;background:#ffffff0b;border:1px solid #ffffff14;max-height:190px;overflow:auto;color:#c9c5d6;font-size:13px;line-height:2}
+footer{padding:35px 7vw;border-top:1px solid #ffffff14;color:#898598;display:flex;justify-content:space-between;gap:20px;font-size:12px}
+.reveal{opacity:0;transform:translateY(45px) scale(.98);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.reveal.show{opacity:1;transform:translateY(0) scale(1)}
+.parallax{will-change:transform}
+@media(max-width:800px){nav{padding:0 5vw;height:68px}.navlinks{display:none}section{padding:85px 6vw}.hero{grid-template-columns:1fr;padding-top:120px;min-height:auto}.visual{height:420px;margin-top:10px}.orb{width:270px;height:270px}.coin{width:78px;height:78px}.reward-card{right:2%;bottom:30px}.scrollhint{display:none}.features,.tasks{grid-template-columns:1fr}.wallet{grid-template-columns:1fr}.section-head{margin-bottom:35px}footer{flex-direction:column}h1{letter-spacing:-3px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+
+/* EARN NOVA monochrome 3D edition */
+body:before{background:radial-gradient(ellipse at 75% 18%,#77777735,transparent 36%),radial-gradient(ellipse at 12% 65%,#44444435,transparent 38%),linear-gradient(135deg,#000,#101010 55%,#030303)}
+nav{background:#050505d9;border-bottom:1px solid #ffffff2b;box-shadow:0 8px 35px #000}
+.brand b,h1 span{color:#fff;text-shadow:0 0 22px #ffffff55}
+.navbtn,.btn{background:linear-gradient(145deg,#fff,#9c9c9c);color:#080808;box-shadow:0 0 25px #ffffff35,inset 0 1px #fff}
+.navbtn:hover,.btn:hover{box-shadow:0 10px 35px #ffffff55}
+.eyebrow,.task .points,.walletbox .amount,.reward-card strong{color:#fff}
+.dot{background:#fff;box-shadow:0 0 14px #fff}
+.orb{background:radial-gradient(circle at 32% 25%,#fff,#a9a9a9 24%,#4a4a4a 55%,#090909 76%);filter:drop-shadow(0 35px 60px #ffffff25);border:1px solid #ffffff88}
+.coin{color:#111;background:radial-gradient(circle at 30% 25%,#fff,#bdbdbd 48%,#555 82%);border-color:#eee;box-shadow:0 20px 40px #000,inset 0 0 15px #fff}
+.reward-card,.feature,.task,.walletbox{background:linear-gradient(145deg,#242424dd,#090909ee);border:1px solid #ffffff42;box-shadow:0 18px 55px #000,inset 0 1px 1px #ffffff30}
+.feature:hover,.task:hover{border-color:#fff;box-shadow:0 18px 45px #ffffff18}
+.icon{background:linear-gradient(145deg,#ffffff25,#77777718);border:1px solid #ffffff22;filter:grayscale(1)}
+.btn.secondary{background:linear-gradient(145deg,#242424,#080808);color:#fff;border:1px solid #ffffff55;box-shadow:inset 0 1px #ffffff22}
+.task button{background:linear-gradient(145deg,#202020,#080808);border-color:#ffffff44}
+.task button:hover{background:#fff;color:#000}
+.walletbox{background:radial-gradient(ellipse at 85% 15%,#77777745,transparent 42%),linear-gradient(145deg,#242424,#080808)}
+.history{background:#ffffff09;border-color:#ffffff25}
+footer{border-color:#ffffff30}
+.visual>*{filter:grayscale(1)}
+@media(max-width:800px){.visual{overflow:hidden}}
+</style>
+</head>
+<body>
+<nav>
+ <a class="brand" href="#">✦ EARN <b>NOVA</b></a>
+ <div class="navlinks"><a href="#features">Features</a><a href="#arcade">50 Games</a><a href="#tasks">Earn points</a><a href="#wallet">Wallet</a></div>
+ <button class="navbtn" onclick="document.querySelector('#tasks').scrollIntoView({behavior:'smooth'})">Explore tasks ↗</button>
+</nav>
+
+<section class="hero">
+ <div class="hero-copy reveal">
+  <div class="eyebrow"><i class="dot"></i> PLAY  •  EARN  •  REDEEM</div>
+  <h1>Play. Earn.<br><span>Rise Above.</span></h1>
+  <p class="lead">Enter the EARN NOVA universe. Explore challenges, track demo points and enjoy a premium monochrome rewards dashboard.</p>
+  <div class="actions"><button class="btn" onclick="document.querySelector('#tasks').scrollIntoView({behavior:'smooth'})">Explore rewards ↗</button><button class="btn secondary" onclick="document.querySelector('#features').scrollIntoView({behavior:'smooth'})">Discover more</button></div>
+  <p class="note">Prototype preview — points are for demonstration only and have no cash value.</p>
+ </div>
+ <div class="visual">
+  <div class="orb parallax" data-speed="-0.08"></div>
+  <div class="coin one parallax" data-speed="-0.16">N</div>
+  <div class="coin two parallax" data-speed="0.12">✦</div>
+  <div class="coin three parallax" data-speed="-0.22">★</div>
+  <div class="reward-card parallax" data-speed="0.08"><small>YOUR REWARD BALANCE</small><strong id="heroPoints">0 PTS</strong><small>Keep exploring ✨</small></div>
+ </div>
+ <div class="scrollhint">↓ &nbsp; Scroll to explore</div>
+</section>
+
+<section id="features">
+ <div class="section-head reveal"><div class="eyebrow"><i class="dot"></i> THE EXPERIENCE</div><h2>A darker world.<br><span style="color:var(--lime)">A bigger game.</span></h2><p>A playful rewards dashboard with smooth motion, clear progress and a little bit of magic.</p></div>
+ <div class="features">
+  <article class="feature reveal"><div class="icon">🎯</div><h3>Daily challenges</h3><p>Try simple activities and watch your demo points grow.</p></article>
+  <article class="feature reveal"><div class="icon">✨</div><h3>Reward moments</h3><p>Get instant visual feedback whenever you complete a task.</p></article>
+  <article class="feature reveal"><div class="icon">📊</div><h3>Track progress</h3><p>See your points and recent activity in one place.</p></article>
+ </div>
+</section>
+
+<section id="tasks">
+ <div class="section-head reveal"><div class="eyebrow"><i class="dot"></i> PICK YOUR CHALLENGE</div><h2>Choose. Complete.<br><span style="color:var(--lime)">Level up.</span></h2><p>These sample tasks demonstrate the interaction. They do not generate real income.</p></div>
+ <div class="tasks">
+  <article class="task reveal"><div class="icon">🎮</div><h3>Gaming challenge</h3><p>Try a quick gaming-themed activity.</p><div class="points">+50 PTS</div><button onclick="earn('Gaming challenge',50,this)">Complete task</button></article>
+  <article class="task reveal"><div class="icon">🧠</div><h3>Quick quiz</h3><p>Give your brain a little workout.</p><div class="points">+30 PTS</div><button onclick="earn('Quick quiz',30,this)">Complete task</button></article>
+  <article class="task reveal"><div class="icon">📚</div><h3>Learn something</h3><p>Explore a new topic and build a habit.</p><div class="points">+40 PTS</div><button onclick="earn('Learning task',40,this)">Complete task</button></article>
+ </div>
+</section>
+
+
+<style>
+/* 50-game arcade */
+#arcade{padding-top:95px}.game-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}.game-tile{border:1px solid #ffffff38;border-radius:18px;padding:17px;background:linear-gradient(145deg,#292929,#080808);box-shadow:inset 0 1px #ffffff25,0 12px 30px #0008;min-height:150px;display:flex;flex-direction:column;justify-content:space-between;transition:.25s}.game-tile:hover{transform:translateY(-5px);border-color:#fff;box-shadow:0 12px 30px #ffffff18}.game-tile .gicon{font-size:27px}.game-tile h3{font-size:14px;margin:10px 0 5px}.game-tile p{font-size:11px;color:#aaa;line-height:1.4}.game-tile button,.modal-actions button{margin-top:13px;border:1px solid #ffffff55;background:linear-gradient(145deg,#fff,#aaa);color:#050505;border-radius:12px;padding:10px;font-weight:800;cursor:pointer}.game-tile button{width:100%}.game-tile button:hover,.modal-actions button:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.overlay{position:fixed;inset:0;background:#000e;backdrop-filter:blur(12px);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}.overlay.open{display:flex}.modal{width:min(560px,100%);background:linear-gradient(145deg,#242424,#050505);border:1px solid #ffffff55;border-radius:24px;padding:26px;box-shadow:0 25px 90px #000,0 0 35px #ffffff18;text-align:center}.modal h2{font-size:27px;margin:8px 0 12px}.modal p{color:#c4c4c4;line-height:1.6;font-size:14px}.adbox{margin:22px 0;padding:28px 16px;border:1px dashed #aaa;border-radius:16px;background:repeating-linear-gradient(135deg,#ffffff0a 0 10px,#ffffff03 10px 20px)}.adbox strong{display:block;font-size:20px;letter-spacing:3px}.adbox small{display:block;color:#999;margin-top:8px}.game-stage{margin:22px 0;padding:20px;border-radius:16px;background:#ffffff0a;border:1px solid #ffffff20;min-height:170px}.game-stage input{max-width:120px;padding:12px;border-radius:10px;border:1px solid #aaa;background:#111;color:#fff;text-align:center;font-size:18px}.game-stage button{padding:12px 16px;border:1px solid #aaa;border-radius:10px;background:#fff;color:#000;font-weight:800;margin:6px;cursor:pointer}.game-stage .big{font-size:42px;font-weight:900;margin:15px}.modal-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.modal-actions button.secondary{background:#171717;color:white}.game-status{min-height:25px;color:#fff;font-weight:700;margin-top:12px}.ad-note{font-size:11px!important;color:#888!important;margin-top:12px}
+@media(max-width:950px){.game-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:560px){.game-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.game-tile{padding:12px;min-height:145px}.game-tile h3{font-size:12px}.modal{padding:20px}}
+</style>
+<section id="arcade">
+ <div class="section-head reveal"><div class="eyebrow"><i class="dot"></i> NOVA ARCADE · 50 GAMES</div><h2>Pick a game.<br><span style="color:#fff">Take a break.</span></h2><p>50 quick-play mini games. A demo sponsor screen appears before and after each game. Game points are prototype-only.</p></div>
+ <div class="game-grid" id="gameGrid"></div>
+</section>
+<div class="overlay" id="adOverlay" role="dialog" aria-modal="true"><div class="modal"><div class="eyebrow"><i class="dot"></i> EARN NOVA PARTNER</div><h2 id="adTitle">Sponsor break</h2><p id="adCopy">A short break before your game.</p><div class="adbox"><strong>AD SPACE</strong><small>Demo ad placement · Connect an approved ad network to show real ads here.</small></div><div class="modal-actions"><button id="adContinue" onclick="continueFromAd()">Continue to game</button></div><p class="ad-note">This preview does not load or serve real advertisements.</p></div></div>
+<div class="overlay" id="gameOverlay" role="dialog" aria-modal="true"><div class="modal"><div class="eyebrow"><i class="dot"></i> NOVA ARCADE</div><h2 id="gameTitle">Game</h2><p id="gameInstructions"></p><div class="game-stage" id="gameStage"></div><div class="game-status" id="gameStatus"></div><div class="modal-actions"><button class="secondary" onclick="closeGame()">Exit game</button></div></div></div>
+
+<section id="wallet">
+ <div class="wallet">
+  <div class="walletbox reveal"><div class="label">✦ &nbsp; NOVA POINTS</div><div class="amount"><span id="walletPoints">0</span> <small style="font-size:17px">PTS</small></div><div class="tiny">Your demo balance · stored on this device</div><div class="history" id="history">Your activity will appear here.</div></div>
+  <div class="walletcopy reveal"><div class="eyebrow"><i class="dot"></i> YOUR DASHBOARD</div><h2>Your progress,<br><span style="color:var(--lime)">in motion.</span></h2><p>Every completed demo task updates your balance and activity history instantly. This is a front-end prototype, not a real payment wallet.</p><button class="btn secondary" onclick="resetDemo()">Reset demo points</button></div>
+ </div>
+</section>
+<footer><span>✦ EARN NOVA</span><span>Made for a brighter digital experience · 2026</span></footer>
+
+<script>
+let points=Number(localStorage.getItem('novaPoints')||0);
+let history=JSON.parse(localStorage.getItem('novaHistory')||'[]');
+function render(){
+ document.getElementById('walletPoints').textContent=points;
+ document.getElementById('heroPoints').textContent=points+' PTS';
+ document.getElementById('history').innerHTML=history.length?history.map(x=>'✓ '+x).join('<br>'):'Your activity will appear here.';
+}
+function earn(name,value,button){
+ points+=value;history.unshift(name+' · +'+value+' points');
+ localStorage.setItem('novaPoints',points);localStorage.setItem('novaHistory',JSON.stringify(history));
+ button.textContent='✓ Completed';button.disabled=true;
+ render();
+}
+function resetDemo(){
+ if(confirm('Reset your demo points and task history?')){
+ points=0;history=[];localStorage.removeItem('novaPoints');localStorage.removeItem('novaHistory');
+ document.querySelectorAll('.task button').forEach(b=>{b.disabled=false;b.textContent='Complete task'});
+ render();
+ }
+}
+
+const gameNames=[
+['Tap Sprint','⚡','Tap the button 10 times as fast as you can.'],['Math Rush','➗','Solve the quick maths question.'],['Memory Flash','🧠','Remember the sequence and repeat it.'],['Number Hunt','🔢','Guess the secret number from 1 to 10.'],['Rock Paper Scissors','✊','Choose rock, paper or scissors.'],['Reaction Test','🎯','Wait for GO, then tap as quickly as possible.'],['Coin Clicker','🪙','Collect 15 coins by tapping.'],
+['Speed Tap','👆','Tap the button 10 times as fast as you can.'],['Brain Trainer','🧩','Solve the quick maths question.'],['Pattern Recall','💡','Remember the sequence and repeat it.'],['Lucky Number','🎲','Guess the secret number from 1 to 10.'],['Hand Battle','✋','Choose rock, paper or scissors.'],['Quick Reflex','🚦','Wait for GO, then tap as quickly as possible.'],['Gold Miner','⛏️','Collect 15 coins by tapping.'],
+['Button Blitz','🚀','Tap the button 10 times as fast as you can.'],['Number Ninja','🥷','Solve the quick maths question.'],['Flash Memory','🧠','Remember the sequence and repeat it.'],['Secret Code','🔐','Guess the secret number from 1 to 10.'],['Mini Duel','⚔️','Choose rock, paper or scissors.'],['Lightning Reflex','⚡','Wait for GO, then tap as quickly as possible.'],['Treasure Tap','💎','Collect 15 coins by tapping.'],
+['Tap Master','🏁','Tap the button 10 times as fast as you can.'],['Quick Calculator','🧮','Solve the quick maths question.'],['Sequence Star','🌟','Remember the sequence and repeat it.'],['Lucky Guess','🍀','Guess the secret number from 1 to 10.'],['Gesture Clash','🤜','Choose rock, paper or scissors.'],['Stopwatch Dash','⏱️','Wait for GO, then tap as quickly as possible.'],['Gem Collector','💠','Collect 15 coins by tapping.'],
+['Rapid Fire Tap','🔥','Tap the button 10 times as fast as you can.'],['Math Master','📐','Solve the quick maths question.'],['Memory King','👑','Remember the sequence and repeat it.'],['Mystery Box','📦','Guess the secret number from 1 to 10.'],['Arena RPS','🎮','Choose rock, paper or scissors.'],['Fast Finger','☝️','Wait for GO, then tap as quickly as possible.'],['Star Collector','⭐','Collect 15 coins by tapping.'],
+['Turbo Tap','💨','Tap the button 10 times as fast as you can.'],['Equation Pop','➕','Solve the quick maths question.'],['Color Sequence','🌈','Remember the sequence and repeat it.'],['Hidden Number','🕵️','Guess the secret number from 1 to 10.'],['RPS Champion','🏆','Choose rock, paper or scissors.'],['Reflex Pro','🎯','Wait for GO, then tap as quickly as possible.'],['Crystal Click','🔮','Collect 15 coins by tapping.'],
+['Mega Tap','💥','Tap the button 10 times as fast as you can.'],['Mental Maths','📊','Solve the quick maths question.'],['Recall Challenge','🧠','Remember the sequence and repeat it.'],['Number Mystery','❓','Guess the secret number from 1 to 10.'],['Final Showdown','🥊','Choose rock, paper or scissors.'],['Reaction Hero','🦸','Wait for GO, then tap as quickly as possible.'],['NOVA Clicker','✦','Collect 15 coins by tapping.'],['Ultimate Tap','👑','Tap the button 10 times as fast as you can.']
+];
+let selectedGame=null, pendingGame=null, gameFinished=false, gameTimer=null, tapCount=0, secretNum=0, seq='', reactionReady=false, reactionStart=0;
+const grid=document.getElementById('gameGrid');
+gameNames.forEach((g,i)=>{const card=document.createElement('article');card.className='game-tile reveal';card.innerHTML=`<div><div class="gicon">${g[1]}</div><h3>${i+1}. ${g[0]}</h3><p>${g[2]}</p></div><button onclick="startGame(${i})">▶ Play game</button>`;grid.appendChild(card)});
+function startGame(i){selectedGame=i;pendingGame=i;document.getElementById('adTitle').textContent='Ad before game';document.getElementById('adCopy').textContent=`A sponsor break before ${gameNames[i][0]}.`;document.getElementById('adContinue').textContent='Continue to game';document.getElementById('adOverlay').classList.add('open');}
+function continueFromAd(){document.getElementById('adOverlay').classList.remove('open');if(gameFinished){gameFinished=false;document.getElementById('gameOverlay').classList.remove('open');return;}openMiniGame(pendingGame);}
+function openMiniGame(i){const g=gameNames[i];document.getElementById('gameTitle').textContent=`${i+1}. ${g[0]}`;document.getElementById('gameInstructions').textContent=g[2];document.getElementById('gameStatus').textContent='';const stage=document.getElementById('gameStage');stage.innerHTML='';document.getElementById('gameOverlay').classList.add('open');const mode=i%7;
+ if(mode===0||mode===6){tapCount=0;const target=mode===0?10:15;stage.innerHTML=`<div class="big" id="tapCount">0 / ${target}</div><button id="tapBtn">TAP!</button>`;document.getElementById('tapBtn').onclick=()=>{tapCount++;document.getElementById('tapCount').textContent=`${tapCount} / ${target}`;if(tapCount>=target)finishMini('Challenge complete!');};}
+ else if(mode===1){let a=2+Math.floor(Math.random()*18),b=2+Math.floor(Math.random()*12),ans=a+b;stage.innerHTML=`<div class="big">${a} + ${b} = ?</div><input id="mathAnswer" type="number" inputmode="numeric" placeholder="Answer"><button onclick="checkMath(${ans})">Submit</button>`;}
+ else if(mode===2){seq=Array.from({length:4},()=>Math.floor(Math.random()*4)+1).join('');stage.innerHTML=`<p>Memorize this sequence:</p><div class="big" id="sequence">${seq}</div><button onclick="document.getElementById('sequence').textContent='••••';document.getElementById('memoryInput').style.display='block'">Hide & continue</button><div id="memoryInput" style="display:none;margin-top:14px"><input id="memoryAnswer" placeholder="Type sequence" maxlength="4"><button onclick="checkMemory()">Check</button></div>`;}
+ else if(mode===3){secretNum=1+Math.floor(Math.random()*10);stage.innerHTML=`<div class="big">? / 10</div><input id="guessAnswer" type="number" min="1" max="10" placeholder="1 to 10"><button onclick="checkGuess()">Guess</button>`;}
+ else if(mode===4){stage.innerHTML=`<p>Choose your move</p><button onclick="playRps('Rock')">✊ Rock</button><button onclick="playRps('Paper')">✋ Paper</button><button onclick="playRps('Scissors')">✌️ Scissors</button>`;}
+ else {reactionReady=false;stage.innerHTML='<div class="big" id="reactionText">Wait…</div><button id="reactionBtn" disabled>WAIT</button>';const delay=1200+Math.random()*2500;gameTimer=setTimeout(()=>{reactionReady=true;reactionStart=Date.now();document.getElementById('reactionText').textContent='GO!';document.getElementById('reactionBtn').disabled=false;document.getElementById('reactionBtn').textContent='TAP NOW';},delay);document.getElementById('reactionBtn').onclick=()=>{if(!reactionReady)return;const ms=Date.now()-reactionStart;document.getElementById('gameStatus').textContent=`Your reaction: ${ms} ms`;finishMini('Reaction test completed!');};}
+}
+function checkMath(ans){const v=Number(document.getElementById('mathAnswer').value);if(v===ans)finishMini('Correct answer!');else document.getElementById('gameStatus').textContent='Not quite — try again.';}
+function checkMemory(){if(document.getElementById('memoryAnswer').value===seq)finishMini('Great memory!');else document.getElementById('gameStatus').textContent='Sequence did not match. Try again.';}
+function checkGuess(){const v=Number(document.getElementById('guessAnswer').value);if(v===secretNum)finishMini('You found the number!');else document.getElementById('gameStatus').textContent=v<secretNum?'Too low — try again.':'Too high — try again.';}
+function playRps(user){const opts=['Rock','Paper','Scissors'],cpu=opts[Math.floor(Math.random()*3)];const win=user===cpu?'It is a tie!':(user==='Rock'&&cpu==='Scissors')||(user==='Paper'&&cpu==='Rock')||(user==='Scissors'&&cpu==='Paper');document.getElementById('gameStatus').textContent=`You: ${user} · NOVA: ${cpu} — ${win?'You win!':'Round over!'}`;finishMini('Match played!');}
+function finishMini(message){if(gameFinished)return;gameFinished=true;clearTimeout(gameTimer);const reward=10;points+=reward;history.unshift(`${gameNames[selectedGame][0]} · +${reward} demo points`);localStorage.setItem('novaPoints',points);localStorage.setItem('novaHistory',JSON.stringify(history));render();document.getElementById('gameStatus').textContent=`${message} +${reward} demo points`;setTimeout(()=>{document.getElementById('gameOverlay').classList.remove('open');document.getElementById('adTitle').textContent='Ad after game';document.getElementById('adCopy').textContent=`Thanks for playing ${gameNames[selectedGame][0]}.`;document.getElementById('adContinue').textContent='Close ad';document.getElementById('adOverlay').classList.add('open');},900);}
+function closeGame(){clearTimeout(gameTimer);gameFinished=false;document.getElementById('gameOverlay').classList.remove('open');}
+
+render();
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');observer.unobserve(entry.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+let ticking=false;
+window.addEventListener('scroll',()=>{
+ if(ticking)return;ticking=true;
+ requestAnimationFrame(()=>{
+  const y=window.scrollY;
+  document.querySelectorAll('.parallax').forEach(el=>{
+   const speed=Number(el.dataset.speed||0);
+   el.style.translate=`0 ${y*speed}px`;
+  });
+  ticking=false;
+ });
+},{passive:true});
+</script>
+</body>
+</html>
